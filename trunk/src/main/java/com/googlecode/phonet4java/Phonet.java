@@ -540,10 +540,10 @@ public class Phonet {
                                 s = phonet_rules[n0];
                                 s = removeFirst(s);
 
-                                while ((s != null) &&
+                                while ((s != null) && s.length() > 0 &&
                                         (charAt(src, i + k0) == charAt(s, 0)) &&
                                         (!Character.isDigit(charAt(s, 0)) ||
-                                        ((new String("(-<^$")).indexOf(s) == -1))) {
+                                        ("(-<^$".indexOf(s) == -1))) {
                                     k0++;
                                     s = removeFirst(s);
                                 }
@@ -581,7 +581,8 @@ public class Phonet {
                                     s = removeFirst(s);
                                 }
 
-                                if ((s == null) /*s == '^' is not possible here */ ||
+                                if ((s == null) || s.length() == 0
+                                        /*s == '^' is not possible here */ ||
                                         ((charAt(s, 0) == '$') &&
                                         !Character.isLetter(charAt(src, i + k0)) &&
                                         (charAt(src, i + k0) != '.'))) {
@@ -653,7 +654,7 @@ public class Phonet {
 
                         if ((p0 == 1) && (z == 0)) {
                             /* rule with '<' is applied */
-                            if ((j > 0) && (s != null) &&
+                            if ((j > 0) && s != null && s.length() > 0 &&
                                     ((charAt(dest, j - 1) == c) ||
                                     (charAt(dest, j - 1) == charAt(s, 0)))) {
                                 j--;
@@ -663,7 +664,7 @@ public class Phonet {
                             z++;
                             k0 = 0;
 
-                            while ((s != null) && (charAt(src, i + k0) != 0)) {
+                            while ((s != null) && (s.length() > 0) && (charAt(src, i + k0) != 0)) {
                                 src = src.substring(0, i + k0) + charAt(s, 0) +
                                     src.substring(i + k0 + 1);
                                 k0++;
@@ -680,12 +681,11 @@ public class Phonet {
                             i = (i + k) - 1;
                             z = 0;
 
-                            while ((s != null) && (s.length() > 1) &&
-                                    (j < (inputLength - 1))) {
+                            while ((s != null) && (s.length() > 1) ) {
                                 if ((j == 0) ||
                                         (dest.charAt(j - 1) != s.charAt(0))) {
                                     dest = dest.substring(0, j) + s.charAt(0) +
-                                        dest.substring(j + 1);
+                                            dest.substring(Math.min(dest.length(), j + 1));
                                     j++;
                                 }
 
@@ -704,7 +704,7 @@ public class Phonet {
                                     (phonet_rules[n].substring(1).indexOf("^^") > -1)) {
                                 if (c != 0) {
                                     dest = dest.substring(0, j) + c +
-                                        dest.substring(j + 1);
+                                            dest.substring(Math.min(dest.length(), j + 1));
                                     j++;
                                 }
 
@@ -730,10 +730,9 @@ public class Phonet {
             }
 
             if (z0 == 0) {
-                if ((j < inputLength) && (c != 0) &&
-                        ((j == 0) || (dest.charAt(j - 1) != c))) {
+                if ((c != 0) &&  ((j == 0) || (dest.charAt(j - 1) != c))) {
                     /* delete multiple letters only */
-                    dest = dest.substring(0, j) + c + dest.substring(j + 1);
+                    dest = dest.substring(0, j) + c + dest.substring(Math.min(j + 1, inputLength));
                     j++;
                 }
 
