@@ -4,11 +4,38 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
   <groupId>com.googlecode.phonet4java</groupId>
   <artifactId>phonet4java</artifactId>
   <name>phonet4java</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <description>Implementation of various phonetic algorithms in Java.</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <licenses>
+    <license>
+      <name>GNU Library or Lesser General Public License (LGPL)</name>
+      <url>http://www.gnu.org/licenses/lgpl.html</url>
+    </license>
+  </licenses>
+  <scm>
+    <connection>scm:svn:http://phonet4java.googlecode.com/svn/trunk</connection>
+    <developerConnection>scm:svn:https://phonet4java.googlecode.com/svn/trunk</developerConnection>
+    <url>http://phonet4java.googlecode.com/svn/trunk</url>
+  </scm>
+  <issueManagement>
+    <system>Google Code Issue Tracking</system>
+    <url>http://code.google.com/p/phonet4java/issues/list</url>
+  </issueManagement>
+  <developers>
+    <developer>
+      <name>Jesper Zedlitz</name>
+      <id>jesper.zedlitz</id>
+      <email>jesper@zedlitz.de</email>
+      <roles>
+        <role>admin</role>
+        <role>developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
   <build>
     <plugins>
       <plugin>
